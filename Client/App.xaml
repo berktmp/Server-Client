@@ -1,0 +1,114 @@
+﻿<Application x:Class="Client.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:Client"
+             xmlns:fa="http://schemas.fontawesome.io/icons/"
+             StartupUri="MainWindow.xaml">
+    <Application.Resources>
+        <!--Menu Button Styles-->
+        <Style x:Key="menuButton" TargetType="Button" >
+            <Setter Property="Cursor" Value="Hand" />
+            <Setter Property="Height" Value="50" />
+            <Setter Property="Width" Value="220" />
+            <Setter Property="Background" Value="Transparent" />
+            <Setter Property="Foreground" Value="#f0f0f0" />
+            <Setter Property="Margin" Value="0" />
+            <Setter Property="HorizontalAlignment" Value="Center" />
+            <Setter Property="FocusVisualStyle" Value="{x:Null}" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}" CornerRadius="20" Padding="20 0" BorderThickness="3 0 0 0" BorderBrush="Transparent">
+                            <ContentPresenter HorizontalAlignment="Stretch" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#21203B"/>
+                    <Setter Property="Foreground" Value="#E9E9E9"/>
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="Button">
+                                <Border Background="{TemplateBinding Background}" CornerRadius="20" Padding="20 0" BorderThickness="3 0 0 0">
+                                    <ContentPresenter HorizontalAlignment="Stretch" VerticalAlignment="Center"/>
+                                </Border>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </Trigger>
+                <Trigger Property="IsMouseCaptured" Value="True">
+                    <Setter Property="Background" Value="#1A192E"/>
+                    <Setter Property="Foreground" Value="#FFF"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+        
+        <!--Button First Icon Style-->
+        <Style x:Key="buttonIcon" TargetType="fa:ImageAwesome">
+            <Setter Property="Foreground" Value="{Binding Path=Foreground,RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Button}}}"/>
+            <Setter Property="Width" Value="20" />
+            <Setter Property="Height" Value="20" />
+        </Style>
+
+        <!--Button Last Icon Style-->
+        <Style x:Key="buttonIconExpanded" TargetType="fa:ImageAwesome">
+            <Setter Property="Foreground" Value="{Binding Path=Foreground,RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Button}}}"/>
+            <Setter Property="Width" Value="10" />
+            <Setter Property="Height" Value="10" />
+            <Setter Property="HorizontalAlignment" Value="Right" />
+            <Setter Property="Visibility" Value="Hidden" />
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding Path=IsMouseOver, RelativeSource={ RelativeSource Mode=FindAncestor,AncestorType=Button}}" Value="True">
+                    <Setter Property="Visibility" Value="Visible" />
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+        
+        <!--Button Text Style-->
+        <Style x:Key="buttonText" TargetType="TextBlock">
+            <Setter Property="Margin" Value="15 0 0 0" />
+            <Setter Property="FontSize" Value="13" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+        </Style>
+
+        <!--Gradient Color Style for lamb OFF-->
+        <LinearGradientBrush x:Key="lambBrushOff" StartPoint="0,0" EndPoint="1,1">
+            <GradientStop Color="#8E0E00" Offset="-0.5"/>
+            <GradientStop Color="#1F1C18" Offset="1"/>
+        </LinearGradientBrush>
+        <!--Gradient Color Style for lamb ON-->
+        <LinearGradientBrush x:Key="lambBrushOn" StartPoint="0,0" EndPoint="1,1">
+            <GradientStop Color="#348F50" Offset="-0.5"/>
+            <GradientStop Color="#56B4D3" Offset="1"/>
+        </LinearGradientBrush>
+
+        <!--Lamb Button Style-->
+        <Style x:Key="lambButton" TargetType="Button" >
+            <Setter Property="Cursor" Value="Hand" />
+            <Setter Property="Height" Value="50" />
+            <Setter Property="Width" Value="220" />
+            <Setter Property="Background" Value="{StaticResource lambBrushOff}"/>
+            <Setter Property="Foreground" Value="#f0f0f0" />
+            <Setter Property="Margin" Value="0" />
+            <Setter Property="HorizontalAlignment" Value="Center" />
+            <Setter Property="FocusVisualStyle" Value="{x:Null}" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}" CornerRadius="20" Padding="20 0" BorderThickness="3 0 0 0" BorderBrush="Transparent">
+                            <ContentPresenter HorizontalAlignment="Stretch" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding IsLambOn}" Value="True">
+                    <Setter Property="Background" Value="{StaticResource lambBrushOn}"/>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+
+    </Application.Resources>
+</Application>
